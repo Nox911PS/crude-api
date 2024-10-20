@@ -5,9 +5,10 @@
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
+    "moduleResolution": "Node",
     "forceConsistentCasingInFileNames": true,
-    "outDir": "./dist"
+    "outDir": "./dist",
   },
-  "include": ["src"],
+  "include": ["src/**/*", "webpack.config.ts"],
   "exclude": ["node_modules"]
 }
