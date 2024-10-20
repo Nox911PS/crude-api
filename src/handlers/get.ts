@@ -1,8 +1,8 @@
 import { IncomingMessage, ServerResponse } from 'node:http';
-import { getAllUsers, getUserById } from './data/users';
-import { getUserId, sendResponse } from './helpers';
+import { getAllUsers, getUserById } from '../database/users';
+import { getUserId, sendResponse } from '../helpers/helpers';
 import { validate } from 'uuid';
-import { INVALID_USER_ID_TEXT, MISSING_USER_TEXT } from './constants';
+import { INVALID_USER_ID_TEXT, MISSING_USER_TEXT } from '../constants/constants';
 
 export const getAllUsersHandler = (req: IncomingMessage, res: ServerResponse) => {
   res.writeHead(200, { 'Content-Type': 'application/json' });

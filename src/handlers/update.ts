@@ -1,13 +1,13 @@
 import { IncomingMessage, ServerResponse } from 'node:http';
-import { getAllUsers, getUserById, updateUser, User } from './data/users';
-import { getUserId, isPayloadInvalid, sendResponse } from './helpers';
+import { getAllUsers, getUserById, updateUser, User } from '../database/users';
+import { getUserId, isPayloadInvalid, sendResponse } from '../helpers/helpers';
 import { validate } from 'uuid';
 import {
   INTERNAL_ERROR_TEXT,
   INVALID_USER_ID_TEXT,
   MISSING_REQUIRED_FIELDS_TEXT,
   MISSING_USER_TEXT,
-} from './constants';
+} from '../constants/constants';
 
 export const getAllUsersHandler = (req: IncomingMessage, res: ServerResponse) => {
   sendResponse(res, 200, 'application/json', JSON.stringify(getAllUsers()));

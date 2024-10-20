@@ -1,10 +1,10 @@
 import { IncomingMessage, ServerResponse } from 'node:http';
-import { BASE_URL, NON_EXISTING_URL_TEXT, REQUEST_METHOD_TYPE } from './constants';
-import { getAllUsersHandler, getUserByIdHandler } from './get';
-import { isPathWithIdValid, parseUrl, sendResponse } from './helpers';
-import { deleteUserByIdHandler } from './delete';
-import { updateUserByIdHandler } from './update';
-import { addUserHandler } from './post';
+import { BASE_URL, NON_EXISTING_URL_TEXT, REQUEST_METHOD_TYPE } from './constants/constants';
+import { getAllUsersHandler, getUserByIdHandler } from './handlers/get';
+import { isPathWithIdValid, parseUrl, sendResponse } from './helpers/helpers';
+import { deleteUserByIdHandler } from './handlers/delete';
+import { updateUserByIdHandler } from './handlers/update';
+import { addUserHandler } from './handlers/post';
 
 export const serverRouter = (req: IncomingMessage, res: ServerResponse) => {
   const parsedUrl = parseUrl(req.url || '');

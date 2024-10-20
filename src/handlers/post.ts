@@ -1,7 +1,7 @@
 import { IncomingMessage, ServerResponse } from 'node:http';
-import { addUser, User } from './data/users';
-import { isPayloadInvalid, sendResponse } from './helpers';
-import { INTERNAL_ERROR_TEXT, MISSING_REQUIRED_FIELDS_TEXT } from './constants';
+import { addUser, User } from '../database/users';
+import { isPayloadInvalid, sendResponse } from '../helpers/helpers';
+import { INTERNAL_ERROR_TEXT, MISSING_REQUIRED_FIELDS_TEXT } from '../constants/constants';
 import { randomUUID } from 'node:crypto';
 
 export const addUserHandler = (req: IncomingMessage, res: ServerResponse) => {

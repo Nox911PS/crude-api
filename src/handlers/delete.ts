@@ -1,8 +1,8 @@
 import { IncomingMessage, ServerResponse } from 'node:http';
-import { deleteUser, getUserById } from './data/users';
-import { getUserId, sendResponse } from './helpers';
+import { deleteUser, getUserById } from '../database/users';
+import { getUserId, sendResponse } from '../helpers/helpers';
 import { validate } from 'uuid';
-import { INVALID_USER_ID_TEXT, MISSING_USER_TEXT } from './constants';
+import { INVALID_USER_ID_TEXT, MISSING_USER_TEXT } from '../constants/constants';
 
 export const deleteUserByIdHandler = (req: IncomingMessage, res: ServerResponse) => {
   const userId = getUserId(req);

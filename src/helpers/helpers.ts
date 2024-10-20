@@ -1,6 +1,6 @@
 import { URL } from 'node:url';
 import { IncomingMessage, ServerResponse } from 'node:http';
-import { ContentType, StatusCodeType } from './constants';
+import { ContentType, StatusCodeType } from '../constants/constants';
 import { UUID } from 'node:crypto';
 
 export const parseUrl = (url: string): URL => new URL(`http://${process.env.HOST ?? 'localhost'}${url}`);
