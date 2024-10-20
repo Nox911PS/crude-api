@@ -1,7 +1,10 @@
+import { config } from 'dotenv';
 import { createServer } from 'node:http';
 import { serverRouter } from './router';
 
-const PORT = 3000;
+config({ path: `.env.${process.env.NODE_ENV}` });
+
+const PORT = process.env.PORT;
 
 const server = createServer(serverRouter);
 
