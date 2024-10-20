@@ -9,6 +9,7 @@ export type ContentType = 'text/plain' | 'application/json';
 
 export type StatusCodeType = 200 | 201 | 204 | 400 | 404 | 500;
 
+export const UUID_VALIDATION_REGEXP = /^[0-9a-f]{8}-[0-9a-f]{4}-[4][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
 export const BASE_URL = '/api/users';
 export const NON_EXISTING_URL_TEXT = 'Non existing URL. Please check your URL and try again.';
 export const INVALID_USER_ID_TEXT = 'User id is invalid. User is should be UUID. Please check user id and try again.';

@@ -1,7 +1,6 @@
 import { IncomingMessage, ServerResponse } from 'node:http';
 import { getAllUsers, getUserById } from '../database/users';
-import { getUserId, sendResponse } from '../helpers/helpers';
-import { validate } from 'uuid';
+import { getUserId, isValidUUID, sendResponse } from '../helpers/helpers';
 import { INVALID_USER_ID_TEXT, MISSING_USER_TEXT } from '../constants/constants';
 
 export const getAllUsersHandler = (req: IncomingMessage, res: ServerResponse) => {
@@ -12,7 +11,7 @@ export const getAllUsersHandler = (req: IncomingMessage, res: ServerResponse) =>
 export const getUserByIdHandler = (req: IncomingMessage, res: ServerResponse) => {
   const userId = getUserId(req);
 
-  if (userId && validate(userId)) {
+  if (userId && isValidUUID(userId)) {
     const user = getUserById(userId);
 
     if (user) {

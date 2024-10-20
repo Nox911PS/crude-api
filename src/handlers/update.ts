@@ -1,7 +1,6 @@
 import { IncomingMessage, ServerResponse } from 'node:http';
 import { getAllUsers, getUserById, updateUser, User } from '../database/users';
-import { getUserId, isPayloadInvalid, sendResponse } from '../helpers/helpers';
-import { validate } from 'uuid';
+import { getUserId, isPayloadInvalid, isValidUUID, sendResponse } from '../helpers/helpers';
 import {
   INTERNAL_ERROR_TEXT,
   INVALID_USER_ID_TEXT,
@@ -16,7 +15,7 @@ export const getAllUsersHandler = (req: IncomingMessage, res: ServerResponse) =>
 export const updateUserByIdHandler = (req: IncomingMessage, res: ServerResponse) => {
   const userId = getUserId(req);
 
-  if (userId && validate(userId)) {
+  if (userId && isValidUUID(userId)) {
     const user = getUserById(userId);
 
     if (user) {

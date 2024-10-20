@@ -1,11 +1,13 @@
 import { URL } from 'node:url';
 import { IncomingMessage, ServerResponse } from 'node:http';
-import { ContentType, StatusCodeType } from '../constants/constants';
+import { ContentType, StatusCodeType, UUID_VALIDATION_REGEXP } from '../constants/constants';
 import { UUID } from 'node:crypto';
 
 export const parseUrl = (url: string): URL => new URL(`http://${process.env.HOST ?? 'localhost'}${url}`);
 
 export const isPathWithIdValid = (path: string): boolean => Boolean(path.match(/^\/api\/users\/([^/]+)$/));
+
+export const isValidUUID = (uuid: UUID): boolean => Boolean(uuid.match(UUID_VALIDATION_REGEXP));
 
 export const getUserId = (req: IncomingMessage): UUID =>
   parseUrl(req.url || '')
