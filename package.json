@@ -15,11 +15,15 @@
   "license": "ISC",
   "devDependencies": {
     "@types/node": "^22.7.5",
+    "@types/uuid": "^10.0.0",
     "eslint": "^8.43.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.2.1",
     "prettier": "^3.3.3",
     "typescript": "5.5.4",
     "typescript-eslint": "^8.9.0"
+  },
+  "dependencies": {
+    "uuid": "^10.0.0"
   }
 }

@@ -1,8 +1,10 @@
-process.stdout.write('hello');
+import { createServer } from 'node:http';
+import { serverRouter } from './router';
 
-process.stdout.write('node');
+const PORT = 3000;
 
-const regular = 'regulr';
-if (regular) {
-  process.stdout.write(regular);
-}
+const server = createServer(serverRouter);
+
+server.listen(PORT, () => {
+  console.log(`Start server on ${PORT} port`);
+});
