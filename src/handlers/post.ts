@@ -29,7 +29,7 @@ export const addUserHandler = (req: IncomingMessage, res: ServerResponse) => {
 
       addUser(user);
 
-      sendResponse(res, 200, 'application/json', JSON.stringify(user));
+      sendResponse(res, 201, 'application/json', JSON.stringify(user));
     } catch (err) {
       console.error(err);
       sendResponse(res, 500, 'text/plain', INTERNAL_ERROR_TEXT);
