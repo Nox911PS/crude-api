@@ -1,7 +1,10 @@
 import { IncomingMessage, ServerResponse } from 'node:http';
-import { BASE_URL, REQUEST_METHOD_TYPE } from './constants';
-
+import { BASE_URL, NON_EXISTING_URL_TEXT, REQUEST_METHOD_TYPE } from './constants';
+import { getAllUsersHandler, getUserByIdHandler } from './get';
 import { isPathWithIdValid, parseUrl, sendResponse } from './helpers';
+import { deleteUserByIdHandler } from './delete';
+import { updateUserByIdHandler } from './update';
+import { addUserHandler } from './post';
 
 export const serverRouter = (req: IncomingMessage, res: ServerResponse) => {
   const parsedUrl = parseUrl(req.url || '');
@@ -29,17 +32,22 @@ export const serverRouter = (req: IncomingMessage, res: ServerResponse) => {
 const handleGetRequest = (req: IncomingMessage, res: ServerResponse, path: string) => {
   if (path === BASE_URL) {
     console.log('[GET ALL] Get all users');
+    getAllUsersHandler(req, res);
   } else if (isPathWithIdValid(path)) {
     console.log('[GET ID] Get user by Id');
+    getUserByIdHandler(req, res);
   } else {
     console.log('[GET NOT_FOUND] route not found or invalid route');
+    sendResponse(res, 404, 'text/plain', NON_EXISTING_URL_TEXT);
   }
 };
 
 const handleDeleteRequest = (req: IncomingMessage, res: ServerResponse, path: string) => {
   if (isPathWithIdValid(path)) {
     console.log('[DELETE ID] delete user by Id');
+    deleteUserByIdHandler(req, res);
   } else {
+    sendResponse(res, 404, 'text/plain', NON_EXISTING_URL_TEXT);
     console.log('DELETE NOT_FOUND] route not found or invalid route');
   }
 };
@@ -47,7 +55,9 @@ const handleDeleteRequest = (req: IncomingMessage, res: ServerResponse, path: st
 const handleUpdateRequest = (req: IncomingMessage, res: ServerResponse, path: string) => {
   if (isPathWithIdValid(path)) {
     console.log('[PUT ID] update user by Id');
+    updateUserByIdHandler(req, res);
   } else {
+    sendResponse(res, 404, 'text/plain', NON_EXISTING_URL_TEXT);
     console.log('PUT NOT_FOUND] route not found or invalid route');
   }
 };
@@ -55,7 +65,9 @@ const handleUpdateRequest = (req: IncomingMessage, res: ServerResponse, path: st
 const handlePostRequest = (req: IncomingMessage, res: ServerResponse, path: string) => {
   if (path === BASE_URL) {
     console.log('[POST ID] add user by Id');
+    addUserHandler(req, res);
   } else {
+    sendResponse(res, 404, 'text/plain', NON_EXISTING_URL_TEXT);
     console.log('POST NOT_FOUND] route not found or invalid route');
   }
 };
